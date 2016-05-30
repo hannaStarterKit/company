@@ -35,13 +35,13 @@ public class EmployeeRepositoryTest {
     @Test
     public void testShouldFindEmployeesByFirstName() {
         // given
-        final String firstName = "katarz";
+        final String firstName = "pankr";
         // when
         List<EmployeeEntity> employeesEntity = employeeRepository.findEmployeeByFirstName(firstName);
         // then
         assertNotNull(employeesEntity);
         assertFalse(employeesEntity.isEmpty());
-        assertEquals("Katarzyna", employeesEntity.get(0).getFirstName());
+        assertEquals("Pankracy", employeesEntity.get(0).getFirstName());
     }
     
     @Test
@@ -53,7 +53,7 @@ public class EmployeeRepositoryTest {
     	// then
     	assertNotNull(employeesEntity);
     	assertFalse(employeesEntity.isEmpty());
-    	assertEquals("Katarzyna", employeesEntity.get(0).getFirstName());
+    	assertEquals("Barbara", employeesEntity.get(0).getFirstName());
     }
     
     @Test
@@ -65,7 +65,7 @@ public class EmployeeRepositoryTest {
     	// then
     	assertNotNull(employeesEntity);
     	assertFalse(employeesEntity.isEmpty());
-    	assertEquals("Katarzyna", employeesEntity.get(0).getFirstName());
+    	assertEquals("Pankracy", employeesEntity.get(0).getFirstName());
     }
     
     @Test

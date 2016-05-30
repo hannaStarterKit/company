@@ -5,6 +5,7 @@ package pl.spring.demo.service.impl;
 
 import java.sql.Timestamp;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
@@ -57,13 +58,16 @@ public class ProjectPropertyServiceImpl implements ProjectPropertyService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public ProjectPropertyEntity saveProjectProperty(ProjectPropertyEntity projectPropertyEntity) {
 		return projectPropertyDao.save(projectPropertyEntity);
 	}
 
 	@Override
-	public void deleteProjectPropertyById(Long projectPropertyEntityIdToRemove) {
-		projectPropertyDao.delete(projectPropertyEntityIdToRemove);
+//	@Transactional(readOnly = false)
+//	@Modifying
+	public void deleteProjectProperty(ProjectPropertyEntity projectPropertyEntity) {
+		projectPropertyRepository.delete(projectPropertyEntity);
 
 	}
 
@@ -74,13 +78,21 @@ public class ProjectPropertyServiceImpl implements ProjectPropertyService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
+	@Modifying
 	public ProjectPropertyEntity updateEndDate(String projectName, String pesel, Timestamp startDate,
 			Timestamp endDate) {
 		ProjectPropertyEntity projectPropertyEntity = this.findProjectPropertyByPeselProjectNameStartDate(projectName,
 				pesel, startDate);
 		//wyjatek
 		projectPropertyEntity.setEndDate(endDate);
-		return projectPropertyRepository.save(projectPropertyEntity);
+		return projectPropertyDao.update(projectPropertyEntity);
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public void deleteProject(ProjectEntity projectEntity) {
+		projectDao.delete(projectEntity);
 	}
 
 }

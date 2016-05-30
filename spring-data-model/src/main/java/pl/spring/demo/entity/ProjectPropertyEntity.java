@@ -13,7 +13,12 @@ import java.sql.Timestamp;
 @Table(name = "project_property")
 @NamedQuery(name = "ProjectPropertyEntity.findAll", query = "SELECT p FROM ProjectPropertyEntity p")
 public class ProjectPropertyEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5718117240588088458L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

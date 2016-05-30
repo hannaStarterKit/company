@@ -1,5 +1,6 @@
 package pl.spring.demo.dao;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 public class EmployeeDaoImplTest {
 
     @Autowired
-    private EmployeeDao employeeDao;  
+    private EmployeeDao employeeDao;
     
     @Test
     public void testShouldFindEmployeeById() {
@@ -34,13 +35,13 @@ public class EmployeeDaoImplTest {
     @Test
     public void testShouldFindEmployeesByFirstName() {
     	// given
-    	final String firstName = "kat";
+    	final String firstName = "bar";
     	// when
     	List<EmployeeEntity> employeesEntity = employeeDao.findEmployeesByFirstName(firstName);
     	// then
     	assertNotNull(employeesEntity);
     	assertFalse(employeesEntity.isEmpty());
-    	assertEquals("Katarzyna", employeesEntity.get(0).getFirstName());
+    	assertEquals("Barbara", employeesEntity.get(0).getFirstName());
     }
     
 }

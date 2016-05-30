@@ -58,9 +58,22 @@ public abstract class AbstractDao<T, K extends Serializable> implements Dao<T, K
         return entityManager.merge(entity);
     }
 
+ 
+    	
+
+//    EntityManager#remove() works only on entities which are managed in the current transaction/context. In your case, you're retrieving the entity in an earlier transaction, storing it in the HTTP session and then attempting to remove it in a different transaction/context. This just won't work.
+//
+//    You need to check if the entity is managed by EntityManager#contains() and if not, then make it managed it EntityManager#merge().
+//
+//    Basically, the delete() method of your business service class should look like this:
+//
+//    em.remove(em.contains(entity) ? entity : em.merge(entity));
+
+
     @Override
     public void delete(T entity) {
-        entityManager.remove(entity);
+        //entityManager.remove(entity);
+        entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
     }
 
     @Override
